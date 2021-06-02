@@ -1,0 +1,12 @@
+from django.db import models
+
+
+class Proveedor(models.Model):
+    nombre = models.CharField(max_length=50)
+    celular= models.BigIntegerField()
+    direccion = models.CharField(max_length=100)
+     
+    
+
+    def __str__(self):
+	    return self.nombre
