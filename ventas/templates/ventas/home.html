@@ -1,0 +1,33 @@
+{% extends 'ventas/layout.html' %}
+{% block body %}
+    <!-- TARJETA DE PRODUCTO -->
+    <section class="container py-3">
+        <div class="row align-items-center">
+            {%for producto in productos %}
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 py-2">
+                <div class="card text-center bg-light">
+                    <a
+                        href="/producto/{{producto.id}}">
+                        <img class="card-img-top img-thumbnail" src="{{producto.imagen}}" alt="Imagen de {{producto.nombre}}">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-tittle">{{producto.nombre}}</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item bg-light">{{producto.costo_unitario}} $</li>
+                            <li class="list-group-item bg-light">
+                                <a href="/carrito/" class="btn btn-warning">
+                                    <i class="fas fa-cart-plus"></i>
+                                    Agregar al carrito
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kokocorp</title>
+    <!-- BOOTSTRAP CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- CSS PROPIO -->
+    <link rel="stylesheet" href="ventas/css/main.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <div class="col-md-1">
+                <a href="/" class="navbar-brand">KOKO CORP</a>
+            </div>
+            <div class="col-12 col-sm-10 col-md-6 col-lg-8">
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Busqueda" aria-label="Search">
+                    <button class="btn btn-warning" type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            <div class="col-lg-2">
+                <div class="d-flex justify-content-end">
+                    <div>
+                        <!-- <a href="" class="btn btn btn-info">
+                            <i class="fas fa-user-alt"></i>
+                            Cuenta
+                        </a> -->
+                        <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
+                            <i class="fas fa-user-alt"></i>
+                            Cuenta
+                        </button>
+                    </div>
+                    <div class="px-2">
+                        <a href="/carrito/" class="btn btn btn-warning">
+                            <i class="fas fa-shopping-cart"></i>
+                            Carrito
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <nav class="nav pt-2">
+                <div class="nav flex-row">
+                    <div class="nav-item px-2">
+                        <a class="btn btn-outline-secondary btn-sm text-light" href="/">Todos los productos</a>
+                    </div>
+                    <div class="nav-item px-2">
+                        <a class="btn btn-outline-secondary btn-sm text-light" href="/categoria/Electronicos/">Electronicos</a>
+                    </div>
+                    <div class="nav-item px-2">
+                        <a class="btn btn-outline-secondary btn-sm text-light" href="/categoria/Deportes/">Deportes</a>
+                    </div>
+                    <div class="nav-item px-2">
+                        <a class="btn btn-outline-secondary btn-sm text-light" href="/categoria/Ropa/">Ropa</a>
+                    </div>
+                    <div class="nav-item px-2">
+                        <a class="btn btn-outline-secondary btn-sm text-light" href="/categoria/Articulos para mascotas/">Mascotas</a>
+                    </div>
+                    <div class="nav-item px-2">
+                        <button class="btn btn-outline-secondary btn-sm text-light" type="button"
+                            data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop"
+                            aria-controls="offcanvasTop">Mostrar mas...</button></a>
+                    </div>
+                    </a>
+                </div>
+
+            </nav>
+        </div>
+    </nav>
+    <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+        <div class="offcanvas-header">
+            <h5 id="offcanvasTopLabel">Todas las categorias</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/categoria/Electronicos/" class="btn btn-outline-info btn-lg p-2">Electronicos</a>
+            <a href="/categoria/Deportes/" class="btn btn-outline-info btn-lg p-2">Deportes</a>
+            <a href="/categoria/Ropa/" class="btn btn-outline-info btn-lg p-2">Ropa</a>
+            <a href="/categoria/Articulos para mascotas/" class="btn btn-outline-info btn-lg p-2">Mascotas</a>
+            <a href="/categoria/Juguetes/" class="btn btn-outline-info btn-lg p-2">Juguetes</a>
+            <a href="/categoria/Anime/" class="btn btn-outline-info btn-lg p-2">Anime</a>
+        </div>
+    </div>
+
+    <!-- INICIO DE SESION Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form class="modal-content" action="#">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Inicio de sesion</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="form-group pt-1">
+                            <label class="form-label" for="correo">Correo electronico</label>
+                            <input class="form-control" type="email" name="correo" required>
+                        </div>
+                        <div class="form-group pt-1">
+                            <label class="form-label" for="contrasenia">Contraseña</label>
+                            <input class="form-control" type="password" name="contrasenia" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Iniciar sesion</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {% block body %}
+    {% endblock %}
+
+    <!-- BOOSTRAP JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+    <!-- FONT AWESOME -->
+    <!-- <script src="https://kit.fontawesome.com/217b74f3ac.js" crossorigin="anonymous"></script> -->
+</body>
+
+</html>

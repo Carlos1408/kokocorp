@@ -11,11 +11,3 @@ class Usuario(models.Model):
 
     def __str__(self):
         return self.nombre_completo
-
-    # @staticmethod
-	# def emailExiste(userEmail):
-	# 	try:
-	# 		correo = Usuario.objects.get(correo=userEmail)
-	# 		return correo
-	# 	except:
-	# 		return False

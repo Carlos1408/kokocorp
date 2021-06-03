@@ -1,0 +1,51 @@
+{% extends 'ventas/layout.html' %}
+{% block body %}
+    <form action="home.html" class="container py-4">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+
+                <article class="card card-body container py-2 bg-light">
+                    <div class="row">
+                        <a href="producto.html" class="col-6 col-lg-3">
+                            <img src="imgs/prueba.jpg" class="img-thumbnail" alt="Producto">
+                        </a>
+                        <div class="col-6 col-lg-9">
+                            <div class="row">
+                                <div class="list-group list-group-flush">
+                                    <li class="list-group-item bg-light">
+                                        <a href="producto/" class="h5 text-decoration-none text-dark">Nombre de producto</a>
+                                    </li>
+                                    <li class="list-group-item bg-light">Caracteristica</li>
+                                    <li class="list-group-item bg-light">Caracteristica</li>
+                                    <li class="list-group-item bg-light">Caracteristica</li>
+                                </div>
+                            </div>
+                            <div class="row p-1">
+                                <div class="col-md-4 col-lg-auto">
+                                    <label for="cantidad" class="form-label">Cantidad:</label>
+                                </div>
+                                <div class="col-md-8 col-lg-auto">
+                                    <input class="form-control" value="1" placeholder="Cantidad" min="1" type="number"
+                                    name="cantidad" required>
+                                </div>
+                                <div class="col-6 col-lg-auto">
+                                    <a href="" class="btn btn-danger">
+                                        <i class="fas fa-trash-alt"></i>
+                                        Eliminar
+                                    </a>
+                                </div>
+                                <div class="col-6 col-lg-auto">
+                                    <a href="" class="btn btn-info">
+                                        <i class="fas fa-edit"></i>
+                                        Modificar
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                
+            </div>
+        </div>
+    </form>
+{% endblock %}
