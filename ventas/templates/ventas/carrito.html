@@ -1,51 +1,78 @@
 {% extends 'ventas/layout.html' %}
 {% block body %}
-    <form action="home.html" class="container py-4">
-        <div class="row">
-            <div class="col-12 col-lg-8">
-
-                <article class="card card-body container py-2 bg-light">
-                    <div class="row">
-                        <a href="producto.html" class="col-6 col-lg-3">
-                            <img src="imgs/prueba.jpg" class="img-thumbnail" alt="Producto">
-                        </a>
-                        <div class="col-6 col-lg-9">
-                            <div class="row">
-                                <div class="list-group list-group-flush">
-                                    <li class="list-group-item bg-light">
-                                        <a href="producto/" class="h5 text-decoration-none text-dark">Nombre de producto</a>
-                                    </li>
-                                    <li class="list-group-item bg-light">Caracteristica</li>
-                                    <li class="list-group-item bg-light">Caracteristica</li>
-                                    <li class="list-group-item bg-light">Caracteristica</li>
-                                </div>
+<form action="home.html" class="container py-4">
+    <div class="row">
+        <div class="col-12 col-lg-8">
+            <h2>Carrito</h2>
+            {% for producto in cant_productos %}
+            <article class="card card-body container py-2 bg-light">
+                <div class="row">
+                    <a href="/producto/{{producto.1.id}}" class="col-6 col-lg-3">
+                        <img src="{{producto.1.imagen}}" class="img-thumbnail" alt="{{producto.1.nombre}}">
+                    </a>
+                    <div class="col-6 col-lg-9">
+                        <div class="row">
+                            <div class="list-group list-group-flush">
+                                <li class="list-group-item bg-light">
+                                    <a href="/producto/{{producto.1.id}}" class="h4 text-decoration-none text-dark">
+                                        {{producto.1.nombre}}
+                                    </a>
+                                </li>
+                                <li class="list-group-item bg-light">
+                                    <h5>Precio : {{producto.1.costo_unitario}} $</h5>
+                                </li>
+                                <li class="list-group-item bg-light">Proveedor : {{producto.1.id_proveedor}}</li>
+                                <!-- {% for caracteristica, valor in producto.1.caracteristicas.items %}
+                                <li class="list-group-item bg-light">{{caracteristica}} : {{valor}}</li>
+                                {% endfor %} -->
                             </div>
-                            <div class="row p-1">
-                                <div class="col-md-4 col-lg-auto">
-                                    <label for="cantidad" class="form-label">Cantidad:</label>
-                                </div>
-                                <div class="col-md-8 col-lg-auto">
-                                    <input class="form-control" value="1" placeholder="Cantidad" min="1" type="number"
-                                    name="cantidad" required>
-                                </div>
-                                <div class="col-6 col-lg-auto">
-                                    <a href="" class="btn btn-danger">
-                                        <i class="fas fa-trash-alt"></i>
-                                        Eliminar
-                                    </a>
-                                </div>
-                                <div class="col-6 col-lg-auto">
-                                    <a href="" class="btn btn-info">
-                                        <i class="fas fa-edit"></i>
-                                        Modificar
-                                    </a>
-                                </div>
+                        </div>
+                        <div class="row p-1 py-3">
+                            <div class="col-md-4 col-lg-auto">
+                                <label for="cantidad" class="form-label">Cantidad:</label>
+                            </div>
+                            <div class="col-md-8 col-lg-auto">
+                                <input class="form-control" placeholder="Cantidad" type="number" value="{{producto.0}}"
+                                    name="cantidad" required readonly>
+                            </div>
+                            <div class="col-6 col-lg-auto">
+                                <a href="" class="btn btn-info">
+                                    <i class="fas fa-edit"></i>
+                                    Modificar
+                                </a>
+                            </div>
+                            <div class="col-6 col-lg-auto">
+                                <a href="/remover-carrito/{{producto.1.id}}" class="btn btn-danger">
+                                    <i class="fas fa-trash-alt"></i>
+                                    Eliminar
+                                </a>
                             </div>
                         </div>
                     </div>
-                </article>
-                
-            </div>
+                </div>
+            </article>
+            {% endfor %}
+
         </div>
-    </form>
+        <div class="col-12 col-lg-4">
+            <h2>Descargo</h2>
+            <article class="card card-body bg-light">
+                <ul class="list-group list-group-flush">
+                    {% for producto in cant_productos %}
+                    <li class="list-group-item bg-light">{{ producto.1.nombre }} : {{ producto.2 }} $</li>
+                    {% endfor %}
+                    <li class="list-group-item bg-light">
+                        <h5>Total: {{ total }} $</h5>
+                    </li>
+                    <li class="list-group-item bg-light text-center pt-3">
+                        <button type="submit" class="btn btn-warning btn-lg">
+                            <i class="fas fa-clipboard-check"></i>
+                            Confirmar pedido
+                        </button>
+                    </li>
+                </ul>
+            </article>
+        </div>
+    </div>
+</form>
 {% endblock %}

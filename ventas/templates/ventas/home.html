@@ -7,8 +7,8 @@
 
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 py-2">
                 <div class="card text-center bg-light">
-                    <a
-                        href="/producto/{{producto.id}}">
+                        <a
+                        href="/producto/{{producto.id}}" class="card-img-sized">
                         <img class="card-img-top img-thumbnail" src="{{producto.imagen}}" alt="Imagen de {{producto.nombre}}">
                     </a>
                     <div class="card-body">
@@ -16,10 +16,17 @@
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item bg-light">{{producto.costo_unitario}} $</li>
                             <li class="list-group-item bg-light">
-                                <a href="/carrito/" class="btn btn-warning">
+                                {% if producto.id in carrito %}
+                                <button class="btn btn-warning" disabled>
+                                    <i class="fas fa-cart-plus"></i>
+                                    Agregado al carrito
+                                </button>
+                                {% else %}
+                                <a href="/add-carrito/{{producto.id}}" class="btn btn-warning">
                                     <i class="fas fa-cart-plus"></i>
                                     Agregar al carrito
                                 </a>
+                                {% endif %}
                             </li>
                         </ul>
                     </div>

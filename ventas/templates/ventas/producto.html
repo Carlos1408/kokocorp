@@ -10,7 +10,9 @@
                     <h2>
                         {{producto.nombre}}
                     </h2>
-                    <div class="list-group-item">{{producto.costo_unitario}}$</div>
+                    <div class="list-group-item">
+                        <h4>{{producto.costo_unitario}}$</h4>
+                    </div>
                     <div class="list-group-item text-success">
                         {% if producto.stock > 0 %}
                         Disponible
@@ -20,17 +22,25 @@
                     </div>
                     <div class="list-group-item">
                         <div class="d-flex">
-                            <form class="flex-row">
+                            <form class="flex-row" action="/add-carrito/{{producto.id}}" method="POST">{% csrf_token %}
                                 <div class="flex-column">
                                     <label for="cantidad">Cantidad: {{producto.stock}}</label>
                                 </div>
                                 <div class="flex-colum">
-                                    <input class="form-control-lg" placeholder="Cantidad" value="1" min="1" type="number" name="cantidad"
+                                    <input class="form-control-lg" placeholder="Cantidad" value="1" min="1" max="{{producto.stock}}" type="number" name="cantidad"
                                         required>
-                                    <a href="/carrito/" class="btn btn-lg btn-warning">
-                                        <i class="fas fa-cart-plus"></i>
-                                        Agregar al carrito
-                                    </a>
+                                        {% if producto.id in carrito %}
+                                        <button type="submit" class="btn btn-lg btn-warning" disabled>
+                                            <i class="fas fa-cart-plus"></i>
+                                            Agregado al carrito
+                                        </button>
+                                        {% else %}
+                                        <button type="submit" class="btn btn-lg btn-warning">
+                                            <i class="fas fa-cart-plus"></i>
+                                            Agregar al carrito
+                                        </button>
+                                        {% endif %}
+                                        
                                     <a href="/carrito/" class="btn btn-lg btn-success">
                                         <i class="fas fa-money-bill-wave"></i>
                                         Comprar ahora
@@ -42,8 +52,8 @@
                     <div class="list-group-item">Proveedor :
                         <a href="" class="text-body">{{producto.id_proveedor}}</a>
                     </div>
-                    {% for car in producto.caracteristicas %}
-                    <div class="list-group-item">{{car}} : CORREGIR CARACTERISTICAS</div>
+                    {% for caracteristica, valor in producto.caracteristicas.items %}
+                    <div class="list-group-item">{{caracteristica}} : {{valor}}</div>
                     {% endfor %}
                     <div class="list-group-item">
                         <h3>Descripcion del producto</h3>
