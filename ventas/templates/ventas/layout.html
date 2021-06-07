@@ -22,9 +22,10 @@
         <div class="container-fluid">
             <div class="col-md-1">
                 <a class="navbar-brand d-flex" href="{% url 'home' %}">
-                    <img src="{% static 'ventas/img/logo.png' %}" alt="" width="40" height="32" class="d-inline-block align-text-top">
+                    <img src="{% static 'ventas/img/logo.png' %}" alt="" width="40" height="32"
+                        class="d-inline-block align-text-top">
                     Kokocorp
-                  </a>
+                </a>
             </div>
             <div class="col-12 col-sm-10 col-md-6 col-lg-8">
                 <form class="d-flex" action="{% url 'busqueda' %}" method="POST"> {% csrf_token %}
@@ -35,15 +36,26 @@
             <div class="col-lg-2">
                 <div class="d-flex justify-content-end">
                     <div>
-                        <!-- <a href="" class="btn btn btn-info">
-                            <i class="fas fa-user-alt"></i>
-                            Cuenta
-                        </a> -->
-                        <button type="button" class="btn btn-info" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">
-                            <i class="fas fa-user-alt"></i>
-                            Cuenta
-                        </button>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="fas fa-user-alt"></i>
+                                Cuenta
+                            </button>
+                            <ul class="dropdown-menu">
+                                {% if not sesion %}
+                                <li><button class="dropdown-item" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">Iniciar sesion</button></li>
+                                <li><a class="dropdown-item" href="{% url 'nueva-cuenta' %}">Registrarme</a></li>
+                                {% else %}
+                                <li><a class="dropdown-item" href="{% url 'mi-cuenta' %}">Mi cuenta</a></li>
+                                {% endif %}
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="{% url 'cerrar-sesion' %}">Cerrar sesion</a></li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="px-2">
                         <a href="{% url 'carrito' %}" class="btn btn btn-warning">
@@ -59,7 +71,8 @@
                         <a class="btn btn-outline-secondary btn-sm text-light" href="/">Todos los productos</a>
                     </div>
                     <div class="nav-item px-2">
-                        <a class="btn btn-outline-secondary btn-sm text-light" href="/categoria/Electronicos">Electronicos</a>
+                        <a class="btn btn-outline-secondary btn-sm text-light"
+                            href="/categoria/Electronicos">Electronicos</a>
                     </div>
                     <div class="nav-item px-2">
                         <a class="btn btn-outline-secondary btn-sm text-light" href="/categoria/Deportes">Deportes</a>
@@ -68,7 +81,8 @@
                         <a class="btn btn-outline-secondary btn-sm text-light" href="/categoria/Ropa">Ropa</a>
                     </div>
                     <div class="nav-item px-2">
-                        <a class="btn btn-outline-secondary btn-sm text-light" href="/categoria/Articulos para mascotas">Mascotas</a>
+                        <a class="btn btn-outline-secondary btn-sm text-light"
+                            href="/categoria/Articulos para mascotas">Mascotas</a>
                     </div>
                     <div class="nav-item px-2">
                         <button class="btn btn-outline-secondary btn-sm text-light" type="button"
@@ -97,10 +111,19 @@
         </div>
     </div>
 
+    <!-- ALERT -->
+    {% if sesion %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{sesion}}!</strong> You should check in on some of those fields below.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+    <!-- --------------- -->
+
     <!-- INICIO DE SESION Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <form class="modal-content" action="#">
+            <form class="modal-content" action="{% url 'iniciar-sesion' %}" method="POST">{% csrf_token %}
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Inicio de sesion</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -109,11 +132,11 @@
                     <div class="container">
                         <div class="form-group pt-1">
                             <label class="form-label" for="correo">Correo electronico</label>
-                            <input class="form-control" type="email" name="correo" required>
+                            <input class="form-control" type="email" name="email" required>
                         </div>
                         <div class="form-group pt-1">
                             <label class="form-label" for="contrasenia">Contraseña</label>
-                            <input class="form-control" type="password" name="contrasenia" required>
+                            <input class="form-control" type="password" name="password" required>
                         </div>
                         <div class="form-group pt-2">
                             <a href="{% url 'nueva-cuenta' %}">Registrarme</a>
@@ -130,6 +153,7 @@
 
     {% block body %}
     {% endblock %}
+
 
     <!-- BOOSTRAP JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"

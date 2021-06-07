@@ -1,14 +1,17 @@
 from django.shortcuts import render, HttpResponse, redirect
 from .models.producto import Producto
 from .models.proveedor import Proveedor
+from .models.usuario import Usuario
+from django.db.models import ObjectDoesNotExist
 from ast import literal_eval
 
 carrito_compra = []
 cantidades = []
+sesion = None
 # Create your views here.
 def home(request):
     productos = Producto.objects.all()
-    return render(request, 'ventas/home.html', {'productos':productos, 'carrito':carrito_compra})
+    return render(request, 'ventas/home.html', {'productos':productos, 'carrito':carrito_compra, 'sesion':sesion})
 
 def busqueda(request):
     form_data = request.POST.dict()
@@ -22,6 +25,12 @@ def producto(request, id):
     producto = Producto.objects.get(id=id)
     producto.caracteristicas = literal_eval(producto.caracteristicas)
     return render(request, 'ventas/producto.html', {'producto':producto,'carrito':carrito_compra})
+
+def categoria(request, categoria):
+    print(categoria)
+    productos = Producto.objects.filter(categoria=categoria)
+    print(productos)
+    return render(request, 'ventas/home.html', {'productos':productos})
 
 def carrito(request):
     costo_total = 0
@@ -54,11 +63,39 @@ def remover_carrito(request, id):
     cantidades.remove(cantidades[indice])
     return redirect('carrito')
 
-def categoria(request, categoria):
-    print(categoria)
-    productos = Producto.objects.filter(categoria=categoria)
-    print(productos)
-    return render(request, 'ventas/home.html', {'productos':productos})
+def confirmar_pedido(request):
+    if sesion:
+        for cantidad, producto in zip(cantidades, carrito_compra):
+            print(Producto.objects.get(id=producto))
+        carrito_compra.clear()
+        cantidades.clear()
+        return redirect('home')
+    else:
+        return redirect('carrito')
 
 def nueva_cuenta(request):
-    return render(request, 'ventas/cuenta.html')
+    return render(request, 'ventas/registro_usuario.html')
+
+def iniciar_sesion(request):
+    form_data = request.POST.dict()
+    email = form_data['email']
+    password = form_data['password']
+
+    try:
+        usuario = Usuario.objects.get(correo=email, contrasenia=password)
+        global sesion
+        sesion = usuario.correo
+        print(usuario, sesion)
+
+    except ObjectDoesNotExist:
+        print('SESION NO INICIADA')
+
+    return redirect('home')
+
+def cerrar_sesion(request):
+    global sesion
+    sesion = None
+    return redirect('home')
+
+def mi_cuenta(request):
+    return render(request, 'ventas/cuenta_usuario.html')

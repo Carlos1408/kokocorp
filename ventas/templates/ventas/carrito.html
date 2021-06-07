@@ -1,6 +1,6 @@
 {% extends 'ventas/layout.html' %}
 {% block body %}
-<form action="home.html" class="container py-4">
+<form action="{% url 'confirmar-pedido' %}" class="container py-4">{% csrf_token %}
     <div class="row">
         <div class="col-12 col-lg-8">
             <h2>Carrito</h2>
@@ -33,7 +33,7 @@
                             </div>
                             <div class="col-md-8 col-lg-auto">
                                 <input class="form-control" placeholder="Cantidad" type="number" value="{{producto.0}}"
-                                    name="cantidad" required readonly>
+                                    name="cantidad{{producto.1.id}}" required readonly>
                             </div>
                             <div class="col-6 col-lg-auto">
                                 <a href="" class="btn btn-info">
