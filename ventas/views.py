@@ -59,3 +59,6 @@ def categoria(request, categoria):
     productos = Producto.objects.filter(categoria=categoria)
     print(productos)
     return render(request, 'ventas/home.html', {'productos':productos})
+
+def nueva_cuenta(request):
+    return render(request, 'ventas/cuenta.html')
