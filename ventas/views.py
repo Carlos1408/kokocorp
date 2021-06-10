@@ -3,9 +3,11 @@ from .models.producto import Producto
 from .models.proveedor import Proveedor
 from .models.usuario import Usuario
 from .models.carrito import Carrito
+from .models.pedido_indiv import Pedido_indiv
 from django.db.models import ObjectDoesNotExist
 from ast import literal_eval
 from django.contrib import messages
+from datetime import date
 
 carrito_compra = []
 cantidades = []
@@ -71,17 +73,25 @@ def remover_carrito(request, id):
     cantidades.remove(cantidades[indice])
     return redirect('carrito')
 
-def confirmar_pedido(request):
+def confirmar_pedido(request, total):
     if sesion:
+        usuario = Usuario.objects.get(correo = sesion)
         carrito = Carrito.objects.create(
-            
+            fecha = date.today(),
+            id_usuario = usuario,
+            costo = float(total)
         )
         for cantidad, producto in zip(cantidades, carrito_compra):
+            print('PEDIDO')
             producto = Producto.objects.get(id=producto)
             producto.stock -= cantidad
             producto.save()
-            carrito = Carrito.objects.create(
-
+            print(usuario, producto, cantidad, total)
+            pedido = Pedido_indiv.objects.create(
+                id_producto = producto,
+                id_carrito = carrito,
+                cantidad_prod = cantidad,
+                costo = cantidad*producto.costo_unitario
             )
         carrito_compra.clear()
         cantidades.clear()
@@ -148,6 +158,10 @@ def mi_cuenta(request):
     return render(request, 'ventas/cuenta_usuario.html', {'sesion':sesion, 'usuario':usuario})
 
 def historial_carrito(request):
-    print('consulta a base de datos de las compras')
-    print('envio de toda la informacion')
-    return render(request, 'ventas/historial_carrito.html')
+    usuario = Usuario.objects.get(correo = sesion)
+    carritos = Carrito.objects.filter(id_usuario = usuario.id)
+    return render(request, 'ventas/historial_carrito.html', {'sesion':sesion, 'carritos':carritos})
+    
+def historial_detalle(request, carrito):
+    pedidos = Pedido_indiv.objects.filter(id_carrito = carrito)
+    return render(request, 'ventas/historial_detalle.html', {'sesion':sesion, 'pedidos':pedidos})

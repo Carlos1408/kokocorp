@@ -1,1 +1,10 @@
+{% extends 'ventas/layout.html' %}
+{% block body %}
 HISTORIAL
+<ul>
+    {% for carrito in carritos %}
+    <li><a href="/historial-detalle/{{carrito.id}}">{{carrito}}</a></li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

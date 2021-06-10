@@ -1,6 +1,6 @@
 {% extends 'ventas/layout.html' %}
 {% block body %}
-<form action="{% url 'confirmar-pedido' %}" class="container py-4">{% csrf_token %}
+<form action="/confirmar-pedido/{{total}}" class="container py-4">{% csrf_token %}
     <div class="row">
         <div class="col-12 col-lg-8">
             <h2>Carrito</h2>

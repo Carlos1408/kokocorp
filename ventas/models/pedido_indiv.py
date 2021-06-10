@@ -9,4 +9,4 @@ class Pedido_indiv(models.Model):
     costo = models.FloatField()
 
     def __str__(self):
-	    return self.cantidad_prod   
+	    return f"{self.id_producto} {self.cantidad_prod} // {self.id_carrito}" 

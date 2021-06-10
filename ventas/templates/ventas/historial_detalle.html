@@ -1,0 +1,10 @@
+{% extends 'ventas/layout.html' %}
+{% block body %}
+DETALLE HISTORIAL
+<ul>
+    {% for pedido in pedidos %}
+    <li>{{pedido}}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
