@@ -17,10 +17,15 @@
                             <li class="list-group-item bg-light">{{producto.costo_unitario}} $</li>
                             <li class="list-group-item bg-light">
                                 {% if producto.id in carrito %}
-                                <button class="btn btn-warning" disabled>
-                                    <i class="fas fa-cart-plus"></i>
-                                    Agregado al carrito
-                                </button>
+                                        <button type="submit" class="btn btn-warning" disabled>
+                                            <i class="fas fa-cart-plus"></i>
+                                            Agregado al carrito
+                                        </button>
+                                        {% elif producto.stock < 1 %}
+                                        <button type="submit" class="btn btn-warning" disabled>
+                                            <i class="fas fa-cart-plus"></i>
+                                            Producto no disponible
+                                        </button>
                                 {% else %}
                                 <a href="/add-carrito/{{producto.id}}" class="btn btn-warning">
                                     <i class="fas fa-cart-plus"></i>

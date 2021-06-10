@@ -13,10 +13,12 @@
                     <div class="list-group-item">
                         <h4>{{producto.costo_unitario}}$</h4>
                     </div>
-                    <div class="list-group-item text-success">
+                    
                         {% if producto.stock > 0 %}
+                    <div class="list-group-item text-success">
                         Disponible
                         {% else %}
+                    <div class="list-group-item text-danger">
                         No disponible
                         {% endif %}
                     </div>
@@ -33,6 +35,11 @@
                                         <button type="submit" class="btn btn-lg btn-warning" disabled>
                                             <i class="fas fa-cart-plus"></i>
                                             Agregado al carrito
+                                        </button>
+                                        {% elif producto.stock < 1 %}
+                                        <button type="submit" class="btn btn-lg btn-warning" disabled>
+                                            <i class="fas fa-cart-plus"></i>
+                                            Producto no disponible
                                         </button>
                                         {% else %}
                                         <button type="submit" class="btn btn-lg btn-warning">
