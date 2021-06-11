@@ -10,4 +10,4 @@ class Carrito(models.Model):
 
 
     def __str__(self):
-	    return f"{self.fecha} {self.costo}"
+	    return f"{self.fecha} {self.costo} // {self.id_usuario}"

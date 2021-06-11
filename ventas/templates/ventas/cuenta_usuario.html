@@ -13,11 +13,6 @@
                     </div>
                     <div class="form-group pt-1">
                         <label class="form-label" for="nombre">Fecha de nacimiento</label>
-                        <!-- <div class="input-group">
-                            <input class="form-control" placeholder="Dia" value="{{usuario.fecha_de_nacimiento|date:'d'}}" readonly>
-                            <input class="form-control" placeholder="Mes" value="{{usuario.fecha_de_nacimiento|date:'m'}}" readonly>
-                            <input class="form-control" placeholder="Año" value="{{usuario.fecha_de_nacimiento|date:'Y'}}" readonly>
-                        </div> -->
                         <input class="form-control" type="date" value="{{usuario.fecha_de_nacimiento|date:'Y-m-d'}}" readonly>
                     </div>
                     <div class="form-group pt-1">
@@ -31,12 +26,6 @@
                     <div class="form-group pt-1">
                         <label class="form-label" for="correo">Correo electronico</label>
                         <input class="form-control" value="{{usuario.correo}}" readonly>
-                    </div>
-                    <div class="form-group pt-2">
-                        <div class="d-flex justify-content-evenly">
-                            <button class="btn btn-primary btn-lg" type="submit">Aceptar</button>
-                            <a href="{% url 'home' %}" class="btn btn-danger btn-lg">Cancelar</a>
-                        </div>
                     </div>
                 </div>
             </div>
