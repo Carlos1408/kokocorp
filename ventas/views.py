@@ -28,7 +28,11 @@ def busqueda(request):
     return render(request, 'ventas/home.html', {'productos':productos, 'carrito':carrito_compra, 'sesion':sesion})
 
 def producto(request, id):
-    producto = Producto.objects.get(id=id)
+    try:
+        id = int(id)
+        producto = Producto.objects.get(id=id)
+    except:
+        producto = Producto.objects.get(nombre=id)
     producto.caracteristicas = literal_eval(producto.caracteristicas)
     return render(request, 'ventas/producto.html', {'producto':producto,'carrito':carrito_compra, 'sesion':sesion})
 
@@ -82,7 +86,6 @@ def confirmar_pedido(request, total):
             costo = float(total)
         )
         for cantidad, producto in zip(cantidades, carrito_compra):
-            print('PEDIDO')
             producto = Producto.objects.get(id=producto)
             producto.stock -= cantidad
             producto.save()

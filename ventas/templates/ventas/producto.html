@@ -26,7 +26,7 @@
                         <div class="d-flex">
                             <form class="flex-row" action="/add-carrito/{{producto.id}}" method="POST">{% csrf_token %}
                                 <div class="flex-column">
-                                    <label for="cantidad">Cantidad: {{producto.stock}}</label>
+                                    <label for="cantidad">Stock: {{producto.stock}}</label>
                                 </div>
                                 <div class="flex-colum">
                                     <input class="form-control-lg" placeholder="Cantidad" value="1" min="1" max="{{producto.stock}}" type="number" name="cantidad"
@@ -48,10 +48,10 @@
                                         </button>
                                         {% endif %}
                                         
-                                    <a href="/carrito/" class="btn btn-lg btn-success">
+                                    <!-- <a href="/carrito/" class="btn btn-lg btn-success">
                                         <i class="fas fa-money-bill-wave"></i>
                                         Comprar ahora
-                                    </a>
+                                    </a> -->
                                 </div>
                             </form>
                         </div>

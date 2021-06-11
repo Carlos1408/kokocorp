@@ -1,10 +1,37 @@
 {% extends 'ventas/layout.html' %}
 {% block body %}
-HISTORIAL
-<ul>
-    {% for carrito in carritos %}
-    <li><a href="/historial-detalle/{{carrito.id}}">{{carrito}}</a></li>
-    {% endfor %}
-</ul>
+<div class="container">
+    <div class="row py-4">
+        <div class="h2">
+            Historial
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-auto">
+            <table class="table table-striped">
+                <thead class="table-dark">
+                    <tr class="h3">
+                        <td>#</td>
+                        <td>Fecha</td>
+                        <td>Costo total</td>
+                        <td>Detalles</td>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for carrito in carritos %}
+                    <tr class="h5">
+                        <td>{{forloop.counter0}}</td>
+                        <td>{{carrito.fecha}}</td>
+                        <td>{{carrito.costo}} $</td>
+                        <td><a href="historial-detalle/{{carrito.id}}" class="btn btn-primary">Ver detalles</a></td>
+                    </tr>
+                    
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</div>
 
 {% endblock %}

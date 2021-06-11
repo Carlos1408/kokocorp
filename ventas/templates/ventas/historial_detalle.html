@@ -1,10 +1,37 @@
 {% extends 'ventas/layout.html' %}
 {% block body %}
-DETALLE HISTORIAL
-<ul>
-    {% for pedido in pedidos %}
-    <li>{{pedido}}</li>
-    {% endfor %}
-</ul>
+<div class="container">
+    <div class="row py-4">
+        <div class="h2">
+            Detalle de la compra
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-auto">
+            <table class="table table-striped">
+                <thead class="table-dark">
+                    <tr class="h3">
+                        <td>#</td>
+                        <td>Producto</td>
+                        <td>Cantidad</td>
+                        <td>Costo</td>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for pedido in pedidos %}
+                    <tr class="h5">
+                        <td>{{forloop.counter0}}</td>
+                        <td><a href="/producto/{{pedido.id_producto}}" class="text-dark">{{pedido.id_producto}}</a></td>
+                        <td>{{pedido.cantidad_prod}}</td>
+                        <td>{{pedido.costo}} $</td>
+                    </tr>
+                    
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</div>
 
 {% endblock %}
