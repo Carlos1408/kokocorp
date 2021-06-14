@@ -122,6 +122,7 @@ def nueva_cuenta(request):
         else:
             messages.warning(request, 'Las contraseñas no coninciden')
             return redirect('nueva-cuenta')
+            
     return render(request, 'ventas/registro_usuario.html')
 
 def iniciar_sesion(request):
