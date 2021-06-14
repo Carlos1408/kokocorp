@@ -6,7 +6,5 @@ class Proveedor(models.Model):
     celular= models.BigIntegerField()
     direccion = models.CharField(max_length=100)
      
-    
-
     def __str__(self):
 	    return self.nombre

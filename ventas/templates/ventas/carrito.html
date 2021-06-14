@@ -22,9 +22,6 @@
                                     <h5>Precio : {{producto.1.costo_unitario}} $</h5>
                                 </li>
                                 <li class="list-group-item bg-light">Proveedor : {{producto.1.id_proveedor}}</li>
-                                <!-- {% for caracteristica, valor in producto.1.caracteristicas.items %}
-                                <li class="list-group-item bg-light">{{caracteristica}} : {{valor}}</li>
-                                {% endfor %} -->
                             </div>
                         </div>
                         <div class="row p-1 py-3">
@@ -35,12 +32,6 @@
                                 <input class="form-control" placeholder="Cantidad" type="number" value="{{producto.0}}"
                                     name="cantidad{{producto.1.id}}" required readonly>
                             </div>
-                            <!-- <div class="col-6 col-lg-auto">
-                                <a href="" class="btn btn-info">
-                                    <i class="fas fa-edit"></i>
-                                    Modificar
-                                </a>
-                            </div> -->
                             <div class="col-6 col-lg-auto">
                                 <a href="/remover-carrito/{{producto.1.id}}" class="btn btn-danger">
                                     <i class="fas fa-trash-alt"></i>

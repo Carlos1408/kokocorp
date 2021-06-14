@@ -18,19 +18,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                {% for carrito in carritos %}
+                    {% for carrito in carritos %}
                     <tr class="h5">
                         <td>{{forloop.counter0}}</td>
                         <td>{{carrito.fecha}}</td>
                         <td>{{carrito.costo}} $</td>
                         <td><a href="historial-detalle/{{carrito.id}}" class="btn btn-primary">Ver detalles</a></td>
                     </tr>
-                    
-                {% endfor %}
+
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
-        
+
     </div>
 </div>
 

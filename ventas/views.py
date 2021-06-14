@@ -19,6 +19,10 @@ def home(request):
     productos = Producto.objects.all()
     return render(request, 'ventas/home.html', {'productos':productos, 'carrito':carrito_compra, 'sesion':sesion})
 
+def categoria(request, categoria):
+    productos = Producto.objects.filter(categoria=categoria)
+    return render(request, 'ventas/home.html', {'productos':productos, 'sesion':sesion, 'carrito':carrito_compra})
+
 def busqueda(request):
     form_data = request.POST.dict()
     busqueda = form_data['busqueda']
@@ -33,10 +37,6 @@ def producto(request, id):
         producto = Producto.objects.get(nombre=id)
     producto.caracteristicas = literal_eval(producto.caracteristicas)
     return render(request, 'ventas/producto.html', {'producto':producto,'carrito':carrito_compra, 'sesion':sesion})
-
-def categoria(request, categoria):
-    productos = Producto.objects.filter(categoria=categoria)
-    return render(request, 'ventas/home.html', {'productos':productos, 'sesion':sesion})
 
 # CARRITO
 def carrito(request):

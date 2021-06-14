@@ -1,59 +1,51 @@
 {% extends 'ventas/layout.html' %}
 {% block body %}
-    <section class="container pt-4">
-        <div class="col-12 col-lg-8 offset-lg-2">
-            <div class="card bg-light">
-                <div class="card-tittle d-flex justify-content-center">
-                    <h3>Nueva cuenta</h3>
-                </div>
-                <form class="card-body" action="{% url 'nueva-cuenta' %}" method="POST">{% csrf_token %}
-                    <div class="form-group">
-                        <label class="form-label" for="nombre">Nombre completo</label>
-                        <input class="form-control" type="text" name="nombre" required>
-                    </div>
-                    <!-- <div class="form-group pt-1">
-                        <label class="form-label" for="nombre">Fecha de nacimiento</label>
-                        <div class="input-group">
-                            <input class="form-control" placeholder="Dia" type="dia" name="dia" min="1" required>
-                            <input class="form-control" placeholder="Mes" type="mes" name="mes" min="1" required>
-                            <input class="form-control" placeholder="Año" type="anio" name="anio" min="1" required>
-                        </div>
-                    </div> -->
-                    <div class="form-group pt-1">
-                        <label class="form-label" for="nombre">Fecha de nacimiento</label>
-                        <div class="input-group">
-                            <input class="form-control" type="date" name="fecha_nacimiento" id="">
-                        </div>
-                    </div>
-                    <div class="form-group pt-1">
-                        <label class="form-label" for="telefono">Telefono</label>
-                        <input class="form-control" type="number" name="telefono" min="1" required>
-                    </div>
-                    <div class="form-group pt-1">
-                        <label class="form-label" for="direccion">Direccion</label>
-                        <input class="form-control" type="text" name="direccion" required>
-                    </div>
-                    <div class="form-group pt-1">
-                        <label class="form-label" for="correo">Correo electronico</label>
-                        <input class="form-control" type="email" name="correo" required>
-                    </div>
-                    <div class="form-group pt-1">
-                        <label class="form-label" for="contrasenia">Contraseña</label>
-                        <input class="form-control" type="password" name="contrasenia" required>
-                    </div>
-                    <div class="form-group pt-1">
-                        <label class="form-label" for="contrasenia_confirm">Confirme su contraseña</label>
-                        <input class="form-control" type="password" name="contrasenia_confirm" required>
-                    </div>
-                    <div class="form-group pt-2">
-                        <div class="d-flex justify-content-evenly">
-                            <button class="btn btn-primary btn-lg" type="submit">Aceptar</button>
-                            <a href="{% url 'home' %}" class="btn btn-danger btn-lg">Cancelar</a>
-                        </div>
-                    </div>
-                </form>
+<section class="container pt-4">
+    <div class="col-12 col-lg-8 offset-lg-2">
+        <div class="card bg-light">
+            <div class="card-tittle d-flex justify-content-center">
+                <h3>Nueva cuenta</h3>
             </div>
-
+            <form class="card-body" action="{% url 'nueva-cuenta' %}" method="POST">{% csrf_token %}
+                <div class="form-group">
+                    <label class="form-label" for="nombre">Nombre completo</label>
+                    <input class="form-control" type="text" name="nombre" required>
+                </div>
+                <div class="form-group pt-1">
+                    <label class="form-label" for="nombre">Fecha de nacimiento</label>
+                    <div class="input-group">
+                        <input class="form-control" type="date" name="fecha_nacimiento" id="">
+                    </div>
+                </div>
+                <div class="form-group pt-1">
+                    <label class="form-label" for="telefono">Telefono</label>
+                    <input class="form-control" type="number" name="telefono" min="1" required>
+                </div>
+                <div class="form-group pt-1">
+                    <label class="form-label" for="direccion">Direccion</label>
+                    <input class="form-control" type="text" name="direccion" required>
+                </div>
+                <div class="form-group pt-1">
+                    <label class="form-label" for="correo">Correo electronico</label>
+                    <input class="form-control" type="email" name="correo" required>
+                </div>
+                <div class="form-group pt-1">
+                    <label class="form-label" for="contrasenia">Contraseña</label>
+                    <input class="form-control" type="password" name="contrasenia" required>
+                </div>
+                <div class="form-group pt-1">
+                    <label class="form-label" for="contrasenia_confirm">Confirme su contraseña</label>
+                    <input class="form-control" type="password" name="contrasenia_confirm" required>
+                </div>
+                <div class="form-group pt-2">
+                    <div class="d-flex justify-content-evenly">
+                        <button class="btn btn-primary btn-lg" type="submit">Aceptar</button>
+                        <a href="{% url 'home' %}" class="btn btn-danger btn-lg">Cancelar</a>
+                    </div>
+                </div>
+            </form>
         </div>
-    </section>
+
+    </div>
+</section>
 {% endblock %}

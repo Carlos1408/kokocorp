@@ -6,8 +6,7 @@ import datetime
 class Carrito(models.Model):
     fecha = models.DateField(default=datetime.datetime.today)
     id_usuario = models.ForeignKey(Usuario, on_delete = models.CASCADE)
-    costo = models.IntegerField()
-
+    costo = models.FloatField()
 
     def __str__(self):
 	    return f"{self.fecha} {self.costo} // {self.id_usuario}"

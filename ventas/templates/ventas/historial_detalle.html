@@ -18,19 +18,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                {% for pedido in pedidos %}
+                    {% for pedido in pedidos %}
                     <tr class="h5">
                         <td>{{forloop.counter0}}</td>
                         <td><a href="/producto/{{pedido.id_producto}}" class="text-dark">{{pedido.id_producto}}</a></td>
                         <td>{{pedido.cantidad_prod}}</td>
                         <td>{{pedido.costo}} $</td>
                     </tr>
-                    
-                {% endfor %}
+
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
-        
+
     </div>
 </div>
 
